@@ -10,6 +10,13 @@ document.querySelectorAll('.calc-table').forEach(table => {
  WBT = document.querySelector('.right-textWBT-input');
 ValueWWoutside = 0;
 ValueWBToutside = 0;
+
+document.querySelectorAll('input[type="text"]').forEach(input => {
+    input.addEventListener('input', function() {
+        this.value = this.value.replace(/,/g, '.');
+    });
+});
+
  WW.addEventListener('input', () => {
     const ValueWW = WW.value;
     ValueWWoutside = ValueWW;
@@ -58,7 +65,7 @@ function calculateWW() {
     if (Valuewęlowodanów && Valuewagi) {
         let WWj = 0;
         WWj = (Valuewęlowodanów * Valuewagi) / 100 / 10 * ValueWWoutside;
-        calculatingWW.innerHTML = `${WWj}`;
+        calculatingWW.innerHTML = `${Number(WWj).toFixed(2)}`;
         console.log(`Ilość jednostek WW to: ${WWj}`);
     }
 };
@@ -70,7 +77,7 @@ function calculateWBT() {
     if (Valuetłuszczy && Valuebiałka && Valuewagi) {
         let WBTj = 0;
         WBTj =((Valuetłuszczy * (Valuewagi/100)*9) + (Valuebiałka * (Valuewagi/100)*4) )/ 100 * ValueWBToutside;
-        calculatingWBT.innerHTML = `${WBTj}`;
+        calculatingWBT.innerHTML = `${Number(WBTj).toFixed(2)}`;
         console.log(`Ilość WBT w jednostkach to: ${WBTj}`);
     }
 };
